@@ -40,13 +40,7 @@ Validated on 2026-09-08 in an AWS Databricks workspace using serverless Jobs com
 - The resolved model version was recorded on every output row.
 - Null predictions: 0.
 
-## Separate Genie Code presenter-script validation
+## Serverless compatibility
 
-The optional presenter script was tested separately in the Databricks notebook editor through Genie
-Code. The prompt correctly elicited a multi-series forecasting workflow and a time-based split plan.
-Genie Code identified missing-date checks, negative/outlier profiling, per-store split coverage, and
-weekday seasonality as gaps; these were incorporated into the final notebook.
-
-One recommendation was deliberately rejected after execution testing: pandas/Spark DataFrame
-`cache()` maps to `PERSIST`, which is unsupported on serverless Spark Connect. The final notebook
-therefore recomputes the small summary query.
+Spark DataFrame `cache()` maps to `PERSIST`, which is unsupported on serverless Spark Connect. The
+EDA notebook therefore recomputes its small summary query.

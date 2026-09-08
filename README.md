@@ -7,14 +7,11 @@ An end-to-end Databricks Asset Bundle for a data-science forecasting demonstrati
 - time-based comparison of naive, seasonal-naive, ETS, and ARIMA forecasts;
 - MLflow parent/child runs with metrics, artifacts, and backtest predictions;
 - champion registration in the Unity Catalog model registry with a movable alias;
-- independently rerunnable batch scoring into a governed Delta table;
-- an optional, separate presenter script showing how an analyst can build toward the reference
-  lifecycle from scratch with Genie Code.
+- independently rerunnable batch scoring into a governed Delta table.
 
 All DAB job tasks use serverless compute. Databricks' separate **Forecasting (serverless) with
 AutoML** Public Preview is currently started from the UI, so the automated bundle compares the same
-family of open-source statistical models directly. The optional UI segment is included in the demo
-script. The UC model is registered by MLflow during the training task; the bundle provider's
+family of open-source statistical models directly. The UC model is registered by MLflow during the training task; the bundle provider's
 `registered_models` resource targets the legacy workspace registry and cannot accept a three-part UC
 model name.
 
@@ -46,10 +43,6 @@ databricks bundle deploy -t dev \
 No notebook widgets are used. Jobs receive DAB variables through a small serverless configuration
 task. When a notebook is run directly, it uses the current UC catalog and a schema derived from the
 signed-in user.
-
-The reference DAB does not use or depend on Genie Code. The separate presenter flow and exact
-prompts are in
-[`docs/GENIE_CODE_DEMO_SCRIPT.md`](docs/GENIE_CODE_DEMO_SCRIPT.md).
 
 The tested workspace runs, model metrics, and batch-output checks are recorded in
 [`docs/VALIDATION.md`](docs/VALIDATION.md).
