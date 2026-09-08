@@ -1,0 +1,33 @@
+bundle:
+  name: genie-code-forecasting-demo
+
+include:
+  - resources/*.yml
+
+variables:
+  catalog:
+    description: Writable Unity Catalog catalog for demo assets (required at deploy time).
+  schema:
+    description: Schema created and managed by this bundle.
+    default: forecasting_demo_${workspace.current_user.short_name}
+  source_catalog:
+    description: Read-only catalog containing the TPC-DS sample data.
+    default: samples
+  source_schema:
+    description: TPC-DS scale-factor schema used by the demo.
+    default: tpcds_sf1
+  forecast_horizon:
+    description: Number of daily periods used for holdout evaluation and future scoring.
+    default: 30
+  registered_model_name:
+    description: Unity Catalog registered model's unqualified name.
+    default: store_revenue_forecaster
+
+targets:
+  dev:
+    default: true
+    # Production naming semantics avoid development-mode prefixes being inserted into
+    # three-part Unity Catalog model names. Resources remain user-scoped by root_path.
+    mode: production
+    workspace:
+      root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}

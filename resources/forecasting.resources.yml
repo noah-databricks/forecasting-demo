@@ -1,0 +1,10 @@
+resources:
+  schemas:
+    forecasting_demo:
+      name: ${var.schema}
+      catalog_name: ${var.catalog}
+      comment: Assets for the serverless MLflow forecasting lifecycle demonstration.
+
+  experiments:
+    forecasting_experiment:
+      name: /Users/${workspace.current_user.userName}/genie-code-forecasting-demo/model-comparison

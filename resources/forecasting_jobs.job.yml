@@ -1,0 +1,57 @@
+resources:
+  jobs:
+    forecasting_lifecycle:
+      name: "[${bundle.target}] Genie Code forecasting lifecycle"
+      description: Prepare data, compare models, register the champion in UC, and batch score it.
+      max_concurrent_runs: 1
+      tasks:
+        - task_key: configure
+          spark_python_task:
+            python_file: ../src/configure.py
+            parameters:
+              - --catalog
+              - ${var.catalog}
+              - --schema
+              - ${var.schema}
+              - --source-catalog
+              - ${var.source_catalog}
+              - --source-schema
+              - ${var.source_schema}
+              - --forecast-horizon
+              - ${var.forecast_horizon}
+              - --experiment-path
+              - /Users/${workspace.current_user.userName}/genie-code-forecasting-demo/model-comparison
+              - --registered-model-name
+              - ${var.registered_model_name}
+          environment_key: forecasting_environment
+
+        - task_key: prepare_and_explore
+          depends_on:
+            - task_key: configure
+          notebook_task:
+            notebook_path: ../src/notebooks/00_prepare_and_explore.py
+          environment_key: forecasting_environment
+
+        - task_key: compare_and_register
+          depends_on:
+            - task_key: prepare_and_explore
+          notebook_task:
+            notebook_path: ../src/notebooks/01_compare_and_register.py
+          environment_key: forecasting_environment
+
+        - task_key: batch_score
+          depends_on:
+            - task_key: compare_and_register
+          notebook_task:
+            notebook_path: ../src/notebooks/02_batch_score.py
+          environment_key: forecasting_environment
+
+      environments: &forecasting_environments
+        - environment_key: forecasting_environment
+          spec:
+            client: "4"
+            dependencies:
+              - statsforecast==2.0.3
+              - pyarrow>=15,<22
+              - matplotlib>=3.8,<4
+              - seaborn>=0.13,<1
