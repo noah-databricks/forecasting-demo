@@ -7,4 +7,4 @@ resources:
 
   experiments:
     forecasting_experiment:
-      name: /Users/${workspace.current_user.userName}/genie-code-forecasting-demo/model-comparison
+      name: /Users/${workspace.current_user.userName}/forecasting-demo/model-comparison

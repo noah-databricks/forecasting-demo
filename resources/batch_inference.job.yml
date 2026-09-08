@@ -20,7 +20,7 @@ resources:
               - --forecast-horizon
               - ${var.forecast_horizon}
               - --experiment-path
-              - /Users/${workspace.current_user.userName}/genie-code-forecasting-demo/model-comparison
+              - /Users/${workspace.current_user.userName}/forecasting-demo/model-comparison
               - --registered-model-name
               - ${var.registered_model_name}
           environment_key: forecasting_environment

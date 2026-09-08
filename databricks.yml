@@ -1,5 +1,5 @@
 bundle:
-  name: genie-code-forecasting-demo
+  name: forecasting-demo
 
 include:
   - resources/*.yml

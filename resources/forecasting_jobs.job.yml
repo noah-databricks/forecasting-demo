@@ -1,7 +1,7 @@
 resources:
   jobs:
     forecasting_lifecycle:
-      name: "[${bundle.target}] Genie Code forecasting lifecycle"
+      name: "[${bundle.target}] Forecasting ML lifecycle"
       description: Prepare data, compare models, register the champion in UC, and batch score it.
       max_concurrent_runs: 1
       tasks:
@@ -20,7 +20,7 @@ resources:
               - --forecast-horizon
               - ${var.forecast_horizon}
               - --experiment-path
-              - /Users/${workspace.current_user.userName}/genie-code-forecasting-demo/model-comparison
+              - /Users/${workspace.current_user.userName}/forecasting-demo/model-comparison
               - --registered-model-name
               - ${var.registered_model_name}
           environment_key: forecasting_environment

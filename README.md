@@ -1,4 +1,4 @@
-# Genie Code + MLflow forecasting lifecycle
+# Forecasting ML lifecycle
 
 An end-to-end Databricks Asset Bundle for a data-science forecasting demonstration using
 `samples.tpcds_sf1.store_sales`:
@@ -8,7 +8,8 @@ An end-to-end Databricks Asset Bundle for a data-science forecasting demonstrati
 - MLflow parent/child runs with metrics, artifacts, and backtest predictions;
 - champion registration in the Unity Catalog model registry with a movable alias;
 - independently rerunnable batch scoring into a governed Delta table;
-- a presenter script showing how to request the same workflow with Genie Code.
+- an optional, separate presenter script showing how an analyst can build toward the reference
+  lifecycle from scratch with Genie Code.
 
 All DAB job tasks use serverless compute. Databricks' separate **Forecasting (serverless) with
 AutoML** Public Preview is currently started from the UI, so the automated bundle compares the same
@@ -46,7 +47,8 @@ No notebook widgets are used. Jobs receive DAB variables through a small serverl
 task. When a notebook is run directly, it uses the current UC catalog and a schema derived from the
 signed-in user.
 
-The full presenter flow and exact prompts are in
+The reference DAB does not use or depend on Genie Code. The separate presenter flow and exact
+prompts are in
 [`docs/GENIE_CODE_DEMO_SCRIPT.md`](docs/GENIE_CODE_DEMO_SCRIPT.md).
 
 The tested workspace runs, model metrics, and batch-output checks are recorded in

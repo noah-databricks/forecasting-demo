@@ -40,10 +40,10 @@ Validated on 2026-09-08 in an AWS Databricks workspace using serverless Jobs com
 - The resolved model version was recorded on every output row.
 - Null predictions: 0.
 
-## Genie Code browser validation
+## Separate Genie Code presenter-script validation
 
-The deployed EDA notebook was opened in the Databricks notebook editor and reviewed through Genie
-Code. The prompt correctly elicited a multi-series forecasting review and a time-based split plan.
+The optional presenter script was tested separately in the Databricks notebook editor through Genie
+Code. The prompt correctly elicited a multi-series forecasting workflow and a time-based split plan.
 Genie Code identified missing-date checks, negative/outlier profiling, per-store split coverage, and
 weekday seasonality as gaps; these were incorporated into the final notebook.
 

@@ -42,7 +42,7 @@ CATALOG = configured("catalog", CURRENT_CATALOG)
 SCHEMA = configured("schema", f"forecasting_demo_{USER_SLUG}")
 HORIZON = int(configured("forecast_horizon", 30))
 EXPERIMENT_PATH = configured(
-    "experiment_path", f"/Users/{CURRENT_USER}/genie-code-forecasting-demo/model-comparison"
+    "experiment_path", f"/Users/{CURRENT_USER}/forecasting-demo/model-comparison"
 )
 REGISTERED_MODEL_NAME = configured("registered_model_name", "store_revenue_forecaster")
 MODEL_NAME = f"{CATALOG}.{SCHEMA}.{REGISTERED_MODEL_NAME}"
